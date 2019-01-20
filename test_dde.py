@@ -12,7 +12,7 @@ def model(Y, t):
 
 
 tt = linspace(0, 30, 100)
-yy = ddeint(model, lambda t:array([1,2]), tt)
+yy = ddeint(model, lambda t:array([1, 2]), tt)
 
 fig, ax = subplots(1,figsize=(4,4))
 ax.plot(tt, yy)
