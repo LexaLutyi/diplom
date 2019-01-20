@@ -38,7 +38,7 @@ def model_second_order(t, flat_system, radius, n_agents, n_dims=2):
     return dot(a, flat_system)
 
 
-def model_second_order_with_delay(flat_system, t, radius, delay, n_agents, n_dims=2):
+def model_second_order_with_delay(in_flat_system, t, radius, delay, n_agents, n_dims=2):
     """
         Оптимизированная версия
         На вход принимает систему вида x = [x1, x2, ..., dot_x1, dot_x2, ...]
@@ -53,8 +53,8 @@ def model_second_order_with_delay(flat_system, t, radius, delay, n_agents, n_dim
     n_order = 2
 
     # система в удобном виде
-    system = flat_system(t - delay)
-    system = system.reshape(n_order, n_dims, n_agents)
+    flat_system = in_flat_system(t - delay)
+    system = flat_system.reshape(n_order, n_dims, n_agents)
 
     # считаем расстояние между агентами
     distance_matrix = distance.squareform(distance.pdist(system[0, :, :].transpose()))
@@ -72,4 +72,4 @@ def model_second_order_with_delay(flat_system, t, radius, delay, n_agents, n_dim
                [zeros((n_agents * n_dims, n_agents * n_dims)), kron(eye(n_dims), a22)]])
 
     # возвращаем f(x) = a * x
-    return dot(a, system)
+    return dot(a, flat_system)
