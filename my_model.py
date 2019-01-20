@@ -31,8 +31,10 @@ def model_second_order(t, flat_system, radius, n_agents, n_dims=2):
     a22 = graph / sum(graph, axis=1).reshape(n_agents, 1) - eye(n_agents)
 
     # матрица изменения скорости всей системы
-    a = block([[zeros((n_agents * n_dims, n_agents * n_dims)), eye(n_agents * n_dims)],
-               [zeros((n_agents * n_dims, n_agents * n_dims)), kron(eye(n_dims), a22)]])
+    a = block([[zeros((n_agents * n_dims, n_agents * n_dims)),
+                eye(n_agents * n_dims)],
+               [zeros((n_agents * n_dims, n_agents * n_dims)),
+                kron(eye(n_dims), a22)]])
 
     # возвращаем f(x) = a * x
     return dot(a, flat_system)
@@ -40,7 +42,7 @@ def model_second_order(t, flat_system, radius, n_agents, n_dims=2):
 
 def model_second_order_with_delay(in_flat_system, t, radius, delay, n_agents, n_dims=2):
     """
-        Оптимизированная версия
+        Оптимизированная версия с задержкой
         На вход принимает систему вида x = [x1, x2, ..., dot_x1, dot_x2, ...]
         x1, x2, ... - координаты агентов
         dot_x1, dot_x2, ... - скорости агентов

@@ -23,15 +23,15 @@ n_dim = 2
 # время начала моделирования
 t_start = 0
 # время конца моделирования
-t_end = 5
+t_end = 20
 # шаг по времени
 t_delta = 0.01
 # время задержки
-t_delay = 0.1
+t_delay = 1
 # сетка значений времени
 tt = arange(t_start, t_end, t_delta)
 # радиус видимости агентов
-vision_radius = 1.5
+vision_radius = 100
 
 # начальные условия в системе выбираем случайными
 x0 = random.randn(n_agents * n_axis * n_dim)
