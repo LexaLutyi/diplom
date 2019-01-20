@@ -67,7 +67,7 @@ plt.xlabel(label_dict[(0, 0)])
 plt.ylabel(label_dict[(0, 1)])
 plt.show()
 """
-y = (sum(x[:, 1, :, :], axis=(2,)) / n_agents)
+y = sum(x[:, 1, :, :], axis=(2,)) / n_agents
 plt.plot(tt, y)
 plt.xlabel('t')
 plt.ylabel('Средняя скорость')
@@ -75,7 +75,7 @@ plt.legend(['x', 'y'])
 plt.show()
 
 y = y.reshape(tt.size, n_axis, 1)
-q = einsum('...k, ...k', x[:, 1, :, :] - y, x[:, 1, :, :] - y)
+q = einsum('...k, ...k', x[:, 1, :, :] - y, x[:, 1, :, :] - y) / n_agents
 plt.xlabel('t')
 plt.ylabel('Среднеквадратичное отклонение от средней скорости')
 plt.plot(tt, q)
