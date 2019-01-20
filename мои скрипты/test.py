@@ -1,7 +1,5 @@
 from numpy import *
 from scipy.spatial import distance
-from scipy.integrate import odeint
-import my_model
 from time import clock
 import networkx as nx
 
