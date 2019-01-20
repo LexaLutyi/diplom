@@ -1,15 +1,16 @@
 
 """ DDE with parameters. """
+
 import matplotlib.pyplot as plt
-from scipy.integrate import odeint
+#from scipy.integrate import odeint
 from numpy import *
-from pylab import *
+#from pylab import *
 from ddeint import ddeint
 from my_model import model_second_order_with_delay
 
 
 # фиксируем случайность
-# seed = random.randint(1, 100000000)
+seed = random.randint(1, 100000000)
 print('seed =', seed)
 
 # число агентов
@@ -33,8 +34,8 @@ tt = arange(t_start, t_end, t_delta)
 # начальные условия в системе выбираем случайными
 x0 = random.randn(n_agents * n_axis * n_dim)
 
-yy = ddeint(model_second_order_with_delay, lambda t: x0, tt)
+yy = ddeint(model_second_order_with_delay, lambda t: x0, tt, fargs=(10, t_delay, n_agents))
 
-plot(tt, yy)
+plt.plot(tt, yy)
 
-show()
+plt.show()
