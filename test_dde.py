@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from numpy import *
 #from pylab import *
 from ddeint import ddeint
-from my_model import model_second_order_with_delay
+from my_model import model_second_order_with_delay, model_second_order_with_delay_and_fixed_graph
 
 
 # фиксируем случайность
@@ -27,7 +27,7 @@ t_end = 20
 # шаг по времени
 t_delta = 0.01
 # время задержки
-t_delay = 1
+t_delay = 2
 # сетка значений времени
 tt = arange(t_start, t_end, t_delta)
 # радиус видимости агентов
@@ -36,7 +36,7 @@ vision_radius = 100
 # начальные условия в системе выбираем случайными
 x0 = random.randn(n_agents * n_axis * n_dim)
 
-x = ddeint(model_second_order_with_delay, lambda t: x0, tt, fargs=(vision_radius, t_delay, n_agents))
+x = ddeint(model_second_order_with_delay_and_fixed_graph, lambda t: x0, tt, fargs=(vision_radius, t_delay, n_agents))
 
 # представляем решение в удобном виде
 x = x.reshape(tt.size, n_dim, n_axis, n_agents)
