@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from scipy.integrate import odeint
 from time import clock
 from numpy import *
-from my_model import model_second_order
+from my_model import model_second_order, model_second_order_with_delay_and_fixed_graph
 
 # фиксируем случайность
 seed = random.randint(1, 100000000)
@@ -35,7 +35,7 @@ t = arange(t_start, t_end, t_delta)
 vision_radius = 1.5
 
 # интегрирование
-x = odeint(model_second_order, x0, t, args=(vision_radius, n_agents, n_axis), tfirst=True)
+x = odeint(model_second_order_with_delay_and_fixed_graph, x0, t, args=(vision_radius, n_agents, n_axis), tfirst=True)
 
 # печатаем время выполнения основной части программы
 print('time =', clock() - start_time)

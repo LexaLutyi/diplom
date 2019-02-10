@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from time import clock
 
-from my_model import model_second_order
+from my_model import model_second_order_with_delay_and_fixed_graph
 
 
 # фиксируем случайность
@@ -20,7 +20,7 @@ def update(frame_number):
 
 
 # число агентов
-n_agents = 20
+n_agents = 10
 # размерность пространства
 n_axis = 2
 # порядок системы
@@ -42,7 +42,7 @@ t = arange(t_start, t_end, t_delta)
 vision_radius = 1.5
 
 # инициализируем интегратор
-r = ode(model_second_order)
+r = ode(model_second_order_with_delay_and_fixed_graph)
 r.set_initial_value(y0, t_start).set_f_params(vision_radius, n_agents, n_axis)
 
 # Create new Figure and an Axes which fills it.
